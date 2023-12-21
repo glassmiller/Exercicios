@@ -40,3 +40,36 @@
 {
     <p>O salário total do funcionário é: @Model.SalarioTotal.Value.ToString("C")</p>
 }
+
+<hr />
+
+<!-- Exercício 3: Calculadora de Saldo -->
+<form method="post" asp-page-handler="CalcularSaldo">
+    <label for="numeroConta">Número da Conta:</label>
+    <input type="text" id="numeroConta" name="numeroConta" required>
+
+    <br />
+
+    <label for="saldo">Saldo:</label>
+    <input type="number" id="saldo" name="saldo" step="0.01" required>
+
+    <br />
+
+    <label for="debito">Débito:</label>
+    <input type="number" id="debito" name="debito" step="0.01" required>
+
+    <br />
+
+    <label for="credito">Crédito:</label>
+    <input type="number" id="credito" name="credito" step="0.01" required>
+
+    <br />
+
+    <button type="submit">Calcular Saldo</button>
+</form>
+
+@if (Model.SaldoAtual.HasValue)
+{
+    <p>Saldo Atual: @Model.SaldoAtual.Value.ToString("C")</p>
+    <p>@Model.MensagemSaldo</p>
+}

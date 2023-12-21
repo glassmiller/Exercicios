@@ -47,4 +47,45 @@ public class IndexModel : PageModel
 
         return Page();
     }
+
+    // (Seções dos exercícios anteriores mantidas para referência)
+
+    // Exercício 3: Calculadora de Saldo
+    [BindProperty]
+    public string NumeroConta { get; set; }
+
+    [BindProperty]
+    public decimal Saldo { get; set; }
+
+    [BindProperty]
+    public decimal Debito { get; set; }
+
+    [BindProperty]
+    public decimal Credito { get; set; }
+
+    [BindProperty]
+    public decimal? SaldoAtual { get; set; }
+
+    [BindProperty]
+    public string MensagemSaldo { get; set; }
+
+    public IActionResult OnPostCalcularSaldo()
+    {
+        // Correção: Atribuir um valor padrão para evitar erro CS8618
+        MensagemSaldo = string.Empty;
+
+        // Correção: Verificar se o saldo é nulo antes de calcular
+        if (SaldoAtual == null)
+        {
+            SaldoAtual = Saldo - Debito + Credito;
+
+            // Verificar se o saldo atual é maior ou igual a zero
+            MensagemSaldo = SaldoAtual >= 0 ? "Saldo Positivo" : "Saldo Negativo";
+        }
+
+        return Page();
+    }
 }
+
+
+
