@@ -1,18 +1,42 @@
 ﻿@page
 @model IndexModel
 @{
+    //Exercício 1: Calculadora de Custo de Vehículo
     ViewData["Title"] = "Calculadora de Despesas Veiculares";
 }
 
 <h2>@ViewData["Title"]</h2>
 
-<form method="post">
+<!-- Exercício 1: Calculadora de Custo de Carro -->
+<form method="post" asp-page-handler="CalcularCustoCarro">
     <label for="custoFabrica">Custo de Fábrica:</label>
     <input type="text" id="custoFabrica" name="custoFabrica" required>
-    <button type="submit">Calcular</button>
+    <button type="submit">Calcular Custo de Carro</button>
 </form>
 
-@if (Model.CustoFinal.HasValue)
+@if (Model.CustoFinalCarro.HasValue)
 {
-    <p>Custo final ao consumidor: @Model.CustoFinal.Value.ToString("C")</p>
+    <p>Custo final ao consumidor: @Model.CustoFinalCarro.Value.ToString("C")</p>
+}
+
+<hr />
+
+<!-- Exercício 2: Calculadora de Salário -->
+<form method="post" asp-page-handler="CalcularSalario">
+    <label for="horasTrabalhadas">Horas Trabalhadas em um Mês:</label>
+    <input type="number" id="horasTrabalhadas" name="horasTrabalhadas" required>
+
+    <br />
+
+    <label for="salarioPorHora">Salário por Hora:</label>
+    <input type="number" id="salarioPorHora" name="salarioPorHora" step="0.01" required>
+
+    <br />
+
+    <button type="submit">Calcular Salário</button>
+</form>
+
+@if (Model.SalarioTotal.HasValue)
+{
+    <p>O salário total do funcionário é: @Model.SalarioTotal.Value.ToString("C")</p>
 }
