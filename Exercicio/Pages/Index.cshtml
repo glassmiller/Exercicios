@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Calculadora de Despesas Veiculares";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post">
+    <label for="custoFabrica">Custo de Fábrica:</label>
+    <input type="text" id="custoFabrica" name="custoFabrica" required>
+    <button type="submit">Calcular</button>
+</form>
+
+@if (Model.CustoFinal.HasValue)
+{
+    <p>Custo final ao consumidor: @Model.CustoFinal.Value.ToString("C")</p>
+}
