@@ -85,7 +85,27 @@ public class IndexModel : PageModel
 
         return Page();
     }
+
+    
+    // Exercício 4: Calcular Maçãs
+    [BindProperty]
+    public int QuantidadeMacas { get; set; }
+
+    [BindProperty]
+    public decimal? CustoTotalMacas { get; set; }
+
+    public IActionResult OnPostCalcularCustoMacas()
+    {
+        // Verificar o preço por unidade com base na quantidade comprada
+        decimal precoUnitario = QuantidadeMacas < 12 ? 1.30m : 1.00m;
+
+        // Calcular o custo total das maçãs
+        CustoTotalMacas = QuantidadeMacas * precoUnitario;
+
+        return Page();
+    }
 }
+
 
 
 
